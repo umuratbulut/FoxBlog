@@ -12,6 +12,9 @@ namespace FoxBlog.Entities.Concrete
         public Author()
         {
             Blogs = new List<Blog>();
+            RegisterDate = DateTime.Now;
+            LastLogin = DateTime.Now;
+            isActive = true;
         }
 
         public int ID { get; set; }
@@ -22,7 +25,10 @@ namespace FoxBlog.Entities.Concrete
         public string Email { get; set; }
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
-        public string isActive { get; set; }
+        public string City { get; set; }
+        public DateTime RegisterDate { get; set; }
+        public DateTime LastLogin { get; set; }
+        public bool isActive { get; set; }
         public List<Blog> Blogs { get; set; }
     }
 }

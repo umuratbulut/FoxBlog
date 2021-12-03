@@ -1,4 +1,6 @@
-﻿using FoxBlog.BLL.Abstract;
+﻿using Core.Aspects.Autofac.Validation;
+using FoxBlog.BLL.Abstract;
+using FoxBlog.BLL.ValidationRules.FluentValidation;
 using FoxBlog.DAL.Abstract;
 using FoxBlog.Entities.Concrete;
 using System;
@@ -17,6 +19,7 @@ namespace FoxBlog.BLL.Concrete
         }
         private ICommentDal _commentDal;
 
+        [ValidationAspect(typeof(CommentValidator))]
         public void Add(Comment comment)
         {
             _commentDal.Add(comment);
@@ -29,7 +32,7 @@ namespace FoxBlog.BLL.Concrete
 
         public List<Comment> GetList()
         {
-            return _commentDal.GetList().OrderByDescending(x => x.ID).ToList();
+            return _commentDal.GetList().Where(x=>x.isActive.Equals(true)).OrderByDescending(x => x.ID).ToList();
         }
 
         public void Remove(Comment comment)

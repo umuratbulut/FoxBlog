@@ -12,6 +12,7 @@ namespace FoxBlog.Entities.Concrete
         public Category()
         {
             Blogs = new List<Blog>();
+            isActive = true;
         }
         public int ID { get; set; }
         public string Name { get; set; }

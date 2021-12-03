@@ -29,11 +29,17 @@ namespace FoxBlog.DAL.Migrations
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastLogin")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -44,11 +50,14 @@ namespace FoxBlog.DAL.Migrations
                     b.Property<string>("PasswordSalt")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("isActive")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("ID");
 
@@ -77,7 +86,16 @@ namespace FoxBlog.DAL.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Keyword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")

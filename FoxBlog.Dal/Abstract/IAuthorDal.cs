@@ -10,5 +10,6 @@ namespace FoxBlog.DAL.Abstract
 {
    public interface IAuthorDal:IRepository<Author>
     {
+        void AddWithHash(Author author);
     }
 }

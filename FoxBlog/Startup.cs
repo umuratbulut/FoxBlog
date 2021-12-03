@@ -24,6 +24,7 @@ namespace FoxBlog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +42,7 @@ namespace FoxBlog
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseStatusCodePagesWithReExecute("/Error/NotFound");
             app.UseRouting();
 
             app.UseAuthorization();

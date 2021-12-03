@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FoxBlog.Entities.DTOs.BlogDetailDto>
+
+<div class="inner-sec">
+    <!--left-->
+    <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 card">
+                    <a href="/@item.BlogSeoUrl-@item.BlogID">
+                        <img src="~/@item.BlogImage" class="card-img-top img-fluid" alt="@item.BlogTitle">
+                    </a>
+                    <div class="card-body">
+                        <ul class="blog-icons my-4">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-align-right" style="color:#ffa500;"></i> @item.BlogCategory
+                                </a>
+                            </li>
+                            <li style="float:right;">
+                                <a href="#">
+                                    <i class="far fa-calendar-alt"></i> @item.BlogDate.ToString("d MMM yyy")
+                                </a>
+                            </li>
+                            @*<li class="mx-2">
+                                    <a href="#">
+                                        <i class="far fa-comment"></i> 0
+                                    </a>
+                                </li>*@
+                           
+
+                        </ul>
+                        <h5 class="card-title">
+                            <a href="/@item.BlogSeoUrl-@item.BlogID">@item.BlogTitle</a>
+                        </h5>
+                        <p class="card-text mb-3">@item.BlogContent.Substring(0, item.BlogContent.Substring(0, 100).LastIndexOf(" ")) ... </p>
+                        <a href="/@item.BlogSeoUrl-@item.BlogID" class="btn btn-primary read-m">Devamını oku <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <!--//left-->
+    </div>
+</div>

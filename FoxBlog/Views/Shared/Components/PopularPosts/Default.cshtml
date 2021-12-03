@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FoxBlog.Entities.Concrete.Blog>
+
+@foreach (var item in Model)
+{
+
+    <div class="blog-grids row mb-3">
+        <div class="col-md-5 blog-grid-left">
+            <a href="/@item.SeoUrl-@item.ID">
+                <img src="~/@item.Image" class="img-fluid" alt="@item.Title">
+            </a>
+        </div>
+        <div class="col-md-7 blog-grid-right">
+
+            <h5>
+                <a href="/@item.SeoUrl-@item.ID">@item.Title.Substring(0, item.Title.Substring(0, 35).LastIndexOf(" ")) ... </a>
+            </h5>
+            <div class="sub-meta">
+                <span>
+                    <i class="fa fa-eye"></i> @item.Counter
+                </span>
+            </div>
+        </div>
+
+    </div>
+}

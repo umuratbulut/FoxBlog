@@ -1,4 +1,6 @@
-﻿using FoxBlog.BLL.Abstract;
+﻿using Core.Aspects.Autofac.Validation;
+using FoxBlog.BLL.Abstract;
+using FoxBlog.BLL.ValidationRules.FluentValidation;
 using FoxBlog.DAL.Abstract;
 using FoxBlog.Entities.Concrete;
 using System;
@@ -17,6 +19,7 @@ namespace FoxBlog.BLL.Concrete
         }
         private IAuthorDal _authorDal;
 
+        [ValidationAspect(typeof(AuthorValidator))]
         public void Add(Author author)
         {
             _authorDal.Add(author);
@@ -40,6 +43,12 @@ namespace FoxBlog.BLL.Concrete
         public void Update(Author author)
         {
             _authorDal.Update(author);
+        }
+
+        [ValidationAspect(typeof(AuthorValidator))]
+        public void AddWithHash(Author author)
+        {
+            _authorDal.AddWithHash(author);
         }
     }
 }

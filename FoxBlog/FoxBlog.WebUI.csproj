@@ -23,4 +23,13 @@
     <ProjectReference Include="..\FoxBlog.BLL\FoxBlog.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Comment\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\72cef773feb2e1b02c2edf59d7a4ea63e2758774.jpeg" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<FoxBlog.Entities.DTOs.BlogDetailDto>
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner-bottom">
+    <!--/blog-->
+    <div class="container">
+        <div class="row">
+            <!--left-->
+            <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                @foreach (var item in Model)
+                {
+                    <div class="blog-grid-top">
+                        <div class="b-grid-top">
+                            <div class="blog_info_left_grid">
+                                <a href="single.html">
+                                    <img src="~/@item.BlogImage" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="blog-info-middle">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-align-right" style="color:#ffa500;"></i>
+                                        <span style="color:white;margin-right:5px;">@item.BlogCategory</span>
+                                    </li>
+                                    <li style="margin-left:2%;">
+                                        <i class="far fa-calendar-alt" style="color:#01cd74;"></i>
+                                        <span style="color:white;">@item.BlogDate.ToString("d MMM yyy")</span>
+                                    </li>
+                                    <li style="margin-left: 2%;">
+                                        <a href="#">
+                                            <i class="far fa-user-circle" style="color:#01cd74;"></i> @item.BlogAuthor
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>
+                            <a href="single.html">@item.BlogTitle</a>
+                        </h3>
+
+                        <p>
+                            @item.BlogContent
+                        </p>
+
+                    </div>
+
+                    @await Component.InvokeAsync("CommentListByBlog", new { id = item.BlogID })
+
+                    <div class="comment-top">
+                        <h4>Yorum yap</h4>
+
+                        <div class="comment-bottom">
+                            <form id="comment" method="post">
+                                @Html.AntiForgeryToken()
+                                <input class="form-control" type="text" name="Name" placeholder="İsim">
+                                <input class="form-control" type="text" name="Surname" placeholder="Soyisim">
+                                <input class="form-control" type="email" name="Email" placeholder="E-Posta">
+
+                                <textarea class="form-control" name="Content" placeholder="Yorum..."></textarea>
+                                <input type="hidden" name="BlogID" value="@item.BlogID" />
+                                <button id="NewComment" type="button" class="btn btn-primary submit">Kaydet</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!--//left-->
+            <!--right-->
+            <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+                <div class="right-blog-info text-left">
+
+                    <div class="tech-btm">
+                        <h4>En Güncel Paylaşımlar</h4>
+                        @await Component.InvokeAsync("LastPosts")
+                    </div>
+                    <div class="tech-btm">
+                        <h4>En Çok Okunanlar</h4>
+                        @await Component.InvokeAsync("PopularPosts")
+                    </div>
+                </div>
+
+            </aside>
+            <!--//right-->
+        </div>
+    </div>
+</section>
+
+@section webOperation{
+    <script src="~/js/web-operation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+}

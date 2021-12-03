@@ -1,0 +1,24 @@
+﻿@model IEnumerable<FoxBlog.Entities.Concrete.Comment>
+
+
+<div class="comment-top">
+    <h4>Yorumlar</h4>
+    @if (Model.Count().Equals(0))
+    {
+        <p style="text-align:center"><i class="fa fa-exclamation-circle"></i> Henüz yorum yapılmadı!</p>
+    }
+
+    @foreach (var item in Model)
+    {
+        <div class="media">
+            <img src="~/images/user-avatar.png" alt="" class="img-fluid" />
+            <div class="media-body">
+                <h5 class="mt-0">@item.Name @item.Surname</h5>
+                <p>
+                    @item.Content
+                </p>
+            </div>
+        </div>
+    }
+
+</div>

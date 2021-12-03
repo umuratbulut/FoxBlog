@@ -9,6 +9,11 @@ namespace FoxBlog.Entities.Concrete
 {
    public class Comment:IEntity
     {
+        public Comment()
+        {
+            CreationDate = DateTime.Now;
+            isActive = false;
+        }
         public int ID { get; set; }
         public int BlogID { get; set; }
         public string Name { get; set; }

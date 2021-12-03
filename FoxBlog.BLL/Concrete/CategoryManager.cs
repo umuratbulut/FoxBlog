@@ -1,4 +1,6 @@
-﻿using FoxBlog.BLL.Abstract;
+﻿using Core.Aspects.Autofac.Validation;
+using FoxBlog.BLL.Abstract;
+using FoxBlog.BLL.ValidationRules.FluentValidation;
 using FoxBlog.DAL.Abstract;
 using FoxBlog.Entities.Concrete;
 using System;
@@ -17,6 +19,7 @@ namespace FoxBlog.BLL.Concrete
         }
         private ICategoryDal _categoryDal;
 
+        [ValidationAspect(typeof(CategoryValidator))]
         public void Add(Category category)
         {
             _categoryDal.Add(category);
@@ -24,12 +27,12 @@ namespace FoxBlog.BLL.Concrete
 
         public Category Find(int id)
         {
-            return _categoryDal.Find(x => x.ID.Equals(id));
+            return _categoryDal.Find(x => x.ID.Equals(id) && x.isActive.Equals(true));
         }
 
         public List<Category> GetList()
         {
-            return _categoryDal.GetList().OrderByDescending(x => x.ID).ToList();
+            return _categoryDal.GetList().Where(x=>x.isActive.Equals(true)).ToList();
         }
 
         public void Remove(Category category)

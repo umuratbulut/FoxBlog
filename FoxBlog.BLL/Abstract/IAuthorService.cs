@@ -14,5 +14,7 @@ namespace FoxBlog.BLL.Abstract
         void Update(Author author);
         void Remove(Author author);
         Author Find(int id);
+        void AddWithHash(Author author);
+
     }
 }
